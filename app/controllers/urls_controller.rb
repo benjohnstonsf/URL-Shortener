@@ -1,6 +1,8 @@
 class UrlsController < ApplicationController
   def show
     @url = Url.find_by_short_url(params[:id])
+    @url.counter += 1
+    @url.save
     redirect_to  ("http://" + @url.long_url)
   end
   

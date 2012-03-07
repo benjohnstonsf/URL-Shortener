@@ -17,11 +17,13 @@ Create new short url: <br />
 <%end%>
 
 
-<p>
+<table class="table table-bordered">
 <% @urls.each do |url| %>
-<%= link_to "localhost:3000/urls/#{url.short_url}", ("http://" + url.long_url) %> &nbsp; => <%= url.long_url%>
+<tr><td>
+<%= link_to "localhost:3000/urls/#{url.short_url}", ("http://" + url.long_url) %></td><td> <%= url.long_url%></td>
 <% if @user == current_user %>
-<%= link_to "edit", edit_url_path(url.id) %>
-<%= link_to "delete", url, method: :delete, confirm: "Is you sure?" %><br / >
-<% end %></p>
-<% end %>
+<td><%= url.counter%></td><td>
+<%= link_to "edit", edit_url_path(url.id) %></td><td>
+<%= link_to "delete", url, method: :delete, confirm: "Is you sure?" %></td>
+<% end %></tr>
+<% end %></table>
