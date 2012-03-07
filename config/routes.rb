@@ -1,6 +1,11 @@
 UrlShortener::Application.routes.draw do
 
 
+  get "urls/show"
+
+  get "home/index"
+  resources :user
+  resources :urls
   devise_for :users
   
   root :to => "home#index"

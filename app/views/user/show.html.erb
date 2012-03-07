@@ -1,2 +1,27 @@
-<h1>User#show</h1>
-<%= @user.email %>
+<h1>Welcome, User <%= @user.id%></h1>
+<!-- <%= @user.email %> -->
+<p>
+
+<br />	
+<% if @user == current_user %>
+Create new short url: <br />
+<%= form_for @url do |f| %>
+<div class="field">
+    <%= f.text_field :long_url %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Submit" %>
+  </div>
+<% end %>
+</p>
+<%end%>
+
+
+<p>
+<% @urls.each do |url| %>
+<%= link_to "localhost:3000/urls/#{url.short_url}", ("http://" + url.long_url) %> &nbsp; => <%= url.long_url%>
+<% if @user == current_user %>
+<%= link_to "edit", edit_url_path(url.id) %>
+<%= link_to "delete", url, method: :delete, confirm: "Is you sure?" %><br / >
+<% end %></p>
+<% end %>
